@@ -12,15 +12,20 @@ spec:
     metadata:
       labels:
         app: maven-project
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9404"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
         - name: maven-project
           image: __IMAGE__
           ports:
             - containerPort: 8080
+            - containerPort: 9404
           resources:
             requests:
               cpu: "100m"
               memory: "256Mi"
             limits:
-              memory: "512Mi"
+              memory: "640Mi"
