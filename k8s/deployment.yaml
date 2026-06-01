@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maven-project
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maven-project
+  template:
+    metadata:
+      labels:
+        app: maven-project
+    spec:
+      containers:
+        - name: maven-project
+          image: __IMAGE__
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"

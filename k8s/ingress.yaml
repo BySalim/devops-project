@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: maven-project
+  namespace: demo
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: app.salim.sn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: maven-project
+                port:
+                  number: 80
